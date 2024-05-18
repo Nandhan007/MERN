@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Rolex Smart Watches",
+    "price": 150.32,
+    "description": "World's most expensive smart watches",
+    "ratings": 3.5,
+    "images": [
+      {
+        "image": "product_68986986.jpg"
+      }
+    ],
+    "category": "Accessories",
+    "seller": "Flipkart",
+    "stock": 9,
+    "numOfReviews": 5,
+    "reviews": []
+  },
+  {
+    "name": "RealMe 2 Pro",
+    "price": 500.32,
+    "description": "RealMe 2 Pro is a powerful devices with high end specification and features",
+    "ratings": 4.0,
+    "images": [
+      {
+        "image": "product_68986990.jpg"
+      }
+    ],
+    "category": "MobilePhones",
+    "seller": "Amazon",
+    "stock": 5,
+    "numOfReviews": 9,
+    "reviews": []
+  },
+  {
+    "name": "Biryani",
+    "price": 200.32,
+    "description": "Indians favourite and delicious food",
+    "ratings": 4.5,
+    "images": [
+      {
+        "image": "product_68986846.jpg"
+      }
+    ],
+    "category": "Foods",
+    "seller": "Zomato",
+    "stock": 15,
+    "numOfReviews": 6,
+    "reviews": []
+  },
+  {
+    "name": "Boat Headset",
+    "price": 100.32,
+    "description": "Boat headset with 3.5mm jack and high quality audio output and long lasting product",
+    "ratings": 5.0,
+    "images": [
+      {
+        "image": "product_68986986.jpg"
+      }
+    ],
+    "category": "Headphones",
+    "seller": "Flipkart",
+    "stock": 9,
+    "numOfReviews": 5,
+    "reviews": []
+  }
+]
