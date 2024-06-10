@@ -6,7 +6,7 @@
     "ratings": 3.5,
     "images": [
       {
-        "image": "product_68986986.jpg"
+        "image": "/images/products/2.jpg"
       }
     ],
     "category": "Accessories",
@@ -16,13 +16,13 @@
     "reviews": []
   },
   {
-    "name": "RealMe 2 Pro",
+    "name": "Oppo F21 Pro 5G",
     "price": 500.32,
-    "description": "RealMe 2 Pro is a powerful devices with high end specification and features",
+    "description": "Oppo F21 Pro 5G is a powerful devices with high end specification and features",
     "ratings": 4.0,
     "images": [
       {
-        "image": "product_68986990.jpg"
+        "image": "/images/products/1.jpg"
       }
     ],
     "category": "MobilePhones",
@@ -32,13 +32,45 @@
     "reviews": []
   },
   {
-    "name": "Biryani",
+    "name": "Asus Tuf Gaming A15 Laptop",
+    "price": 700.32,
+    "description": "1TB Solid State Drive Storage with dedicated 4GB Nvidia Graphics card series 1650",
+    "ratings": 4.9,
+    "images": [
+      {
+        "image": "/images/products/3.jpg"
+      }
+    ],
+    "category": "Accessories",
+    "seller": "Amazon",
+    "stock": 10,
+    "numOfReviews": 10,
+    "reviews": []
+  },
+  {
+    "name": "Ptron Headset",
+    "price": 100.32,
+    "description": "Ptron headset with wireless bluetooth connectivity and high quality audio output and long lasting product",
+    "ratings": 5.0,
+    "images": [
+      {
+        "image": "/images/products/4.jpg"
+      }
+    ],
+    "category": "Headphones",
+    "seller": "Flipkart",
+    "stock": 9,
+    "numOfReviews": 5,
+    "reviews": []
+  },
+  {
+    "name": "Nike Shoes",
     "price": 200.32,
-    "description": "Indians favourite and delicious food",
+    "description": "High Quality and branded shoes with lowest price",
     "ratings": 4.5,
     "images": [
       {
-        "image": "product_68986846.jpg"
+        "image": "/images/products/5.jpg"
       }
     ],
     "category": "Foods",
@@ -48,19 +80,35 @@
     "reviews": []
   },
   {
-    "name": "Boat Headset",
-    "price": 100.32,
-    "description": "Boat headset with 3.5mm jack and high quality audio output and long lasting product",
-    "ratings": 5.0,
+    "name": "Lenovo Zenbook laptop",
+    "price": 400.32,
+    "description": "500GB Solid State Drive Storage and light weight material with excellent durability",
+    "ratings": 4.0,
     "images": [
       {
-        "image": "product_68986986.jpg"
+        "image": "/images/products/6.jpg"
       }
     ],
-    "category": "Headphones",
+    "category": "Accessories",
     "seller": "Flipkart",
-    "stock": 9,
-    "numOfReviews": 5,
+    "stock": 10,
+    "numOfReviews": 15,
+    "reviews": []
+  },
+  {
+    "name": "Acer laptop",
+    "price": 600.32,
+    "description": "1TB Hard disk and light weight material with excellent durability",
+    "ratings": 3.8,
+    "images": [
+      {
+        "image": "/images/products/7.jpg"
+      }
+    ],
+    "category": "Accessories",
+    "seller": "Amazon",
+    "stock": 5,
+    "numOfReviews": 20,
     "reviews": []
   }
 ]

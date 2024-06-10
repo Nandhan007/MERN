@@ -23,7 +23,6 @@ const schema = new mongoose.Schema({
   },
   avatar: {
     type: String,
-    required: [true, "Please add your avatar image"],
   },
   role: {
     type: String,
