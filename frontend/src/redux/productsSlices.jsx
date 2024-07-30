@@ -26,6 +26,24 @@ export const getProducts = createAsyncThunk(
     }
   }
 );
+
+export const getAdminProducts = createAsyncThunk(
+  "getAdminProducts",
+  async (arg, { rejectWithValue }) => {
+    try {
+      return await axios
+        .get("http://localhost:8000/api/v1/admin/products", {
+          withCredentials: true,
+        })
+        .then((res) => res.data);
+    } catch (error) {
+      return rejectWithValue(
+        error.response.data.message || "An Unknown error Occured"
+      );
+    }
+  }
+);
+
 const productsSlice = createSlice({
   name: "products",
   initialState: {
@@ -35,6 +53,14 @@ const productsSlice = createSlice({
     totalcount: null,
     resperpage: null,
     searchCount: null,
+  },
+  reducers: {
+    clearError(state, action) {
+      return {
+        ...state,
+        error: null,
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getProducts.pending, (state, action) => {
@@ -51,8 +77,20 @@ const productsSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     });
+    builder.addCase(getAdminProducts.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(getAdminProducts.fulfilled, (state, action) => {
+      state.loading = false;
+      state.products = action.payload.products;
+    });
+    builder.addCase(getAdminProducts.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
   },
 });
 
-const { reducer } = productsSlice;
+const { reducer, actions } = productsSlice;
+export const { clearError } = actions;
 export default reducer;

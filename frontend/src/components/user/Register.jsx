@@ -42,7 +42,6 @@ export function Register() {
     formData.append("email", UserData.email);
     formData.append("password", UserData.password);
     formData.append("avatar", avatar);
-    console.log(UserData);
     dispatch(register(formData));
   };
 

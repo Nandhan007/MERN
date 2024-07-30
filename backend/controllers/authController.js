@@ -64,9 +64,7 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
   user.save({ validateBeforeSave: false });
 
   // Create reset url
-  const resetUrl = `${req.protocol}://${req.get(
-    "host"
-  )}/api/v1/password/reset/${resetToken}`;
+  const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
 
   const message = `Your password reset url is as follows \n\n 
   ${resetUrl}\n\n If you have not request this email, then ignore it.`;
@@ -143,17 +141,23 @@ exports.changePassword = catchAsyncError(async (req, res, next) => {
 });
 
 exports.updateProfile = catchAsyncError(async (req, res, next) => {
-  const newDetails = {
+  let newDetails = {
     name: req.body.name,
     email: req.body.email,
   };
-  await User.findByIdAndUpdate(req.user.id, newDetails, {
+  let avatar;
+  if (req.file) {
+    avatar = `${process.env.BACKEND_URL}/uploads/user/${req.file.originalname}`;
+    newDetails = { ...newDetails, avatar };
+  }
+  const user = await User.findByIdAndUpdate(req.user.id, newDetails, {
     new: true,
     runValidators: true,
   });
   res.status(200).json({
     success: true,
     message: "Profile successfully updated",
+    user,
   });
 });
 
@@ -186,6 +190,7 @@ exports.updateUser = catchAsyncError(async (req, res, next) => {
     email: req.body.email,
     role: req.body.role,
   };
+
   await User.findByIdAndUpdate(req.params.id, newDetails, {
     new: true,
     runValidators: true,

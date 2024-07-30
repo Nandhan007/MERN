@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearerror, login } from "../../redux/authSlices";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Metadata from "../layout/MetaData";
 
@@ -13,6 +13,8 @@ export function Login() {
     (state) => state.authState
   );
   const navigate = useNavigate();
+  const locate = useLocation();
+  const redirect = locate.search ? `/${locate.search.split("=")[1]}` : "/";
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -30,9 +32,9 @@ export function Login() {
       return;
     }
     if (isAuthenticated) {
-      navigate("/");
+      navigate(redirect);
     }
-  }, [error, isAuthenticated, navigate, dispatch]);
+  }, [error, isAuthenticated, navigate, dispatch, redirect]);
   return (
     <Fragment>
       <Metadata title="Login" />
@@ -62,9 +64,9 @@ export function Login() {
               />
             </div>
 
-            <a href="#" className="float-right mb-4">
+            <Link to={"/password/forgot"} href="#" className="float-right mb-4">
               Forgot Password?
-            </a>
+            </Link>
 
             <button
               id="login_button"

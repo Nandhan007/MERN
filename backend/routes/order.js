@@ -20,11 +20,11 @@ router.route("/myorders").get(isAuthenticateUser, myOrders);
 
 // Admin Routes
 router
-  .route("/orders")
+  .route("/admin/orders")
   .get(isAuthenticateUser, authorisedRoles("admin"), orders);
 
 router
-  .route("/orders/:id")
-  .post(isAuthenticateUser, authorisedRoles("admin"), UpdateOrder)
+  .route("/admin/orders/:id")
+  .put(isAuthenticateUser, authorisedRoles("admin"), UpdateOrder)
   .delete(isAuthenticateUser, authorisedRoles("admin"), DeleteOrder);
 module.exports = router;

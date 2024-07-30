@@ -488,7 +488,6 @@ footer {
   align-items: stretch;
   min-height: 100vh;
   font-weight: normal;
-
   margin-top: 0;
   height: 100%;
   left: 0;
@@ -525,6 +524,10 @@ footer {
 #sidebar ul li a:hover {
   color: #232f3e;
   background: #fff;
+}
+
+#sidebar ul li div.dropdown-menu a {
+  color: black;
 }
 
 #sidebar ul li a i {

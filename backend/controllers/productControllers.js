@@ -26,6 +26,14 @@ exports.getProducts = async (req, res, next) => {
 };
 
 exports.newProducts = catchAsyncError(async (req, res, next) => {
+  let images = [];
+  if (req.files.length > 0) {
+    req.files.forEach((file) => {
+      let url = `${process.env.BACKEND_URL}/uploads/product/${file.originalname}`;
+      images.push({ image: url });
+    });
+  }
+  req.body.images = images;
   req.body.user = req.user.id;
   const product = await ProductModel.create(req.body);
   res.status(201).json({
@@ -35,7 +43,10 @@ exports.newProducts = catchAsyncError(async (req, res, next) => {
 });
 
 exports.getSingleProduct = async (req, res, next) => {
-  const product = await ProductModel.findById(req.params.id);
+  const product = await ProductModel.findById(req.params.id).populate(
+    "reviews.user",
+    "name email"
+  );
   if (!product) {
     return next(new ErrorHandler("Product not found", 400));
     // return res.status(404).json({
@@ -51,6 +62,18 @@ exports.getSingleProduct = async (req, res, next) => {
 
 exports.UpdateProduct = async (req, res, next) => {
   let product = await ProductModel.findById(req.params.id);
+  let images = [];
+  if (req.body.imageCleared == "false") {
+    images = product.images;
+  }
+  if (req.files.length > 0) {
+    req.files.forEach((file) => {
+      let url = `${process.env.BACKEND_URL}/uploads/product/${file.originalname}`;
+      images.push({ image: url });
+    });
+  }
+
+  req.body.images = images;
   if (!product) {
     return res.status(404).json({
       success: false,
@@ -127,6 +150,7 @@ exports.createReview = catchAsyncError(async (req, res, next) => {
 
 exports.getReviews = catchAsyncError(async (req, res, next) => {
   const product = await ProductModel.findById(req.query.id);
+  console.log(product.reviews[0].user.name);
   res.status(200).json({
     success: true,
     Reviews: product.reviews,
@@ -155,5 +179,14 @@ exports.deleteReview = catchAsyncError(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
+  });
+});
+
+// Get Admin Products
+exports.getAdminProducts = catchAsyncError(async (req, res, next) => {
+  const products = await ProductModel.find();
+  res.status(200).json({
+    success: true,
+    products: products,
   });
 });
