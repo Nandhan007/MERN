@@ -9,9 +9,7 @@ const app = require("./app");
 const connectDatabase = require("./config/database");
 
 connectDatabase();
-app.get("/", (req, res, next) => {
-  res.send("Hello");
-});
+
 const server = app.listen(process.env.PORT, () => {
   console.log(
     `Server is running in the port ${process.env.PORT} in ${process.env.NODE_ENV}`
