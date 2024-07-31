@@ -6,7 +6,7 @@ export const getUsers = createAsyncThunk(
   async (arg, { rejectWithValue }) => {
     try {
       return await axios
-        .get("http://localhost:8000/api/v1/admin/users", {
+        .get("https://mern-wao5.onrender.com/api/v1/admin/users", {
           withCredentials: true,
         })
         .then((res) => res.data);
@@ -23,7 +23,7 @@ export const getUser = createAsyncThunk(
   async (arg, { rejectWithValue }) => {
     try {
       return await axios
-        .get(`http://localhost:8000/api/v1/admin/user/${arg}`, {
+        .get(`https://mern-wao5.onrender.com/api/v1/admin/user/${arg}`, {
           withCredentials: true,
         })
         .then((res) => res.data);
@@ -40,7 +40,7 @@ export const DeleteUser = createAsyncThunk(
   async (arg, { rejectWithValue }) => {
     try {
       return await axios
-        .delete(`http://localhost:8000/api/v1/admin/user/${arg}`, {
+        .delete(`https://mern-wao5.onrender.com/api/v1/admin/user/${arg}`, {
           withCredentials: true,
         })
         .then((res) => res.data);
@@ -58,7 +58,7 @@ export const UpdateUser = createAsyncThunk(
     try {
       return await axios
         .put(
-          `http://localhost:8000/api/v1/admin/user/${arg.id}`,
+          `https://mern-wao5.onrender.com/api/v1/admin/user/${arg.id}`,
           arg.formData,
           {
             headers: {

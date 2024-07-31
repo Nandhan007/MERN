@@ -5,7 +5,7 @@ export const getProducts = createAsyncThunk(
   "getProducts",
   async (arg, { rejectWithValue }) => {
     try {
-      let link = `http://localhost:8000/api/v1/products?page=${arg.currentPage}`;
+      let link = `https://mern-wao5.onrender.com/api/v1/products?page=${arg.currentPage}`;
       if (arg.keyword) {
         link += `&keyword=${arg.keyword}`;
       }
@@ -32,7 +32,7 @@ export const getAdminProducts = createAsyncThunk(
   async (arg, { rejectWithValue }) => {
     try {
       return await axios
-        .get("http://localhost:8000/api/v1/admin/products", {
+        .get("https://mern-wao5.onrender.com/api/v1/admin/products", {
           withCredentials: true,
         })
         .then((res) => res.data);

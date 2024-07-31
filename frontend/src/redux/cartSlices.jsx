@@ -6,7 +6,7 @@ export const addToCart = createAsyncThunk(
   async (arg, { rejectWithValue }) => {
     try {
       const data = await axios
-        .get(`http://localhost:8000/api/v1/products/${arg.id}`)
+        .get(`https://mern-wao5.onrender.com/api/v1/products/${arg.id}`)
         .then((res) => res.data);
       const cartArray = {
         product: data.product._id,

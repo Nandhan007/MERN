@@ -6,7 +6,7 @@ export const getSingleProduct = createAsyncThunk(
   async (arg, { rejectWithValue }) => {
     try {
       return await axios
-        .get(`http://localhost:8000/api/v1/products/${arg}`)
+        .get(`https://mern-wao5.onrender.com/api/v1/products/${arg}`)
         .then((res) => res.data);
     } catch (error) {
       return rejectWithValue(
@@ -24,7 +24,11 @@ export const NewProduct = createAsyncThunk(
         withCredentials: true,
       };
       return await axios
-        .post(`http://localhost:8000/api/v1/admin/products/new`, arg, config)
+        .post(
+          `https://mern-wao5.onrender.com/api/v1/admin/products/new`,
+          arg,
+          config
+        )
         .then((res) => res.data);
     } catch (error) {
       return rejectWithValue(
@@ -42,7 +46,10 @@ export const DeleteProduct = createAsyncThunk(
         withCredentials: true,
       };
       return await axios
-        .delete(`http://localhost:8000/api/v1/admin/product/${arg}`, config)
+        .delete(
+          `https://mern-wao5.onrender.com/api/v1/admin/product/${arg}`,
+          config
+        )
         .then((res) => res.data);
     } catch (error) {
       return rejectWithValue(
@@ -61,7 +68,7 @@ export const updateProduct = createAsyncThunk(
       };
       return await axios
         .put(
-          `http://localhost:8000/api/v1/admin/product/${arg.id}`,
+          `https://mern-wao5.onrender.com/api/v1/admin/product/${arg.id}`,
           arg.formdata,
           config
         )
@@ -85,7 +92,7 @@ export const CreateReview = createAsyncThunk(
         withCredentials: true,
       };
       return await axios
-        .put(`http://localhost:8000/api/v1/review/new`, arg, config)
+        .put(`https://mern-wao5.onrender.com/api/v1/review/new`, arg, config)
         .then((res) => res.data);
     } catch (error) {
       return rejectWithValue(
@@ -104,7 +111,7 @@ export const GetReviews = createAsyncThunk(
         withCredentials: true,
       };
       return await axios
-        .get(`http://localhost:8000/api/v1/admin/getreviews`, config)
+        .get(`https://mern-wao5.onrender.com/api/v1/admin/getreviews`, config)
         .then((res) => res.data);
     } catch (error) {
       return rejectWithValue(
@@ -123,7 +130,10 @@ export const DeleteReviews = createAsyncThunk(
         withCredentials: true,
       };
       return await axios
-        .delete(`http://localhost:8000/api/v1/admin/review/delete`, config)
+        .delete(
+          `https://mern-wao5.onrender.com/api/v1/admin/review/delete`,
+          config
+        )
         .then((res) => res.data);
     } catch (error) {
       return rejectWithValue(

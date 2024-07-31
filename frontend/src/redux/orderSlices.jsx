@@ -6,7 +6,7 @@ export const NewOrder = createAsyncThunk(
   async (arg, { rejectWithValue }) => {
     try {
       return await axios
-        .post("http://localhost:8000/api/v1/order/new", arg, {
+        .post("https://mern-wao5.onrender.com/api/v1/order/new", arg, {
           withCredentials: true,
         })
         .then((res) => res.data);
@@ -22,7 +22,7 @@ export const MyOrder = createAsyncThunk(
   async (arg, { rejectWithValue }) => {
     try {
       return await axios
-        .get("http://localhost:8000/api/v1/myorders", {
+        .get("https://mern-wao5.onrender.com/api/v1/myorders", {
           withCredentials: true,
         })
         .then((res) => res.data);
@@ -39,7 +39,7 @@ export const orderDetailed = createAsyncThunk(
   async (arg, { rejectWithValue }) => {
     try {
       return await axios
-        .get(`http://localhost:8000/api/v1/order/${arg}`, {
+        .get(`https://mern-wao5.onrender.com/api/v1/order/${arg}`, {
           withCredentials: true,
         })
         .then((res) => res.data);
@@ -56,7 +56,7 @@ export const GetOrders = createAsyncThunk(
   async (arg, { rejectWithValue }) => {
     try {
       const data = await axios
-        .get(`http://localhost:8000/api/v1/admin/orders`, {
+        .get(`https://mern-wao5.onrender.com/api/v1/admin/orders`, {
           withCredentials: true,
         })
         .then((res) => res.data);
@@ -75,7 +75,7 @@ export const DeleteOrders = createAsyncThunk(
   async (arg, { rejectWithValue }) => {
     try {
       return await axios
-        .delete(`http://localhost:8000/api/v1/admin/orders/${arg}`, {
+        .delete(`https://mern-wao5.onrender.com/api/v1/admin/orders/${arg}`, {
           withCredentials: true,
         })
         .then((res) => res.data);
@@ -93,7 +93,7 @@ export const UpdateOrders = createAsyncThunk(
     try {
       return await axios
         .put(
-          `http://localhost:8000/api/v1/admin/orders/${arg.id}`,
+          `https://mern-wao5.onrender.com/api/v1/admin/orders/${arg.id}`,
           arg.orderData,
           {
             withCredentials: true,

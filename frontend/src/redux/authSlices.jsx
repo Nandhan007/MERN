@@ -7,7 +7,7 @@ export const login = createAsyncThunk(
     try {
       return await axios
         .post(
-          `http://localhost:8000/api/v1/login`,
+          `https://mern-wao5.onrender.com/api/v1/login`,
           {
             email: arg.email,
             password: arg.password,
@@ -35,7 +35,11 @@ export const register = createAsyncThunk(
         },
       };
       return await axios
-        .post(`http://localhost:8000/api/v1/register`, formData, config)
+        .post(
+          `https://mern-wao5.onrender.com/api/v1/register`,
+          formData,
+          config
+        )
         .then((res) => res.data);
     } catch (error) {
       return rejectWithValue(
@@ -56,7 +60,11 @@ export const updateProfile = createAsyncThunk(
         withCredentials: true,
       };
       return await axios
-        .put(`http://localhost:8000/api/v1/myprofile/update`, formData, config)
+        .put(
+          `https://mern-wao5.onrender.com/api/v1/myprofile/update`,
+          formData,
+          config
+        )
         .then((res) => res.data);
     } catch (error) {
       return rejectWithValue(
@@ -71,7 +79,7 @@ export const loadUser = createAsyncThunk(
   async (arg, { rejectWithValue }) => {
     try {
       return await axios
-        .get(`http://localhost:8000/api/v1/myprofile`, {
+        .get(`https://mern-wao5.onrender.com/api/v1/myprofile`, {
           withCredentials: true,
         })
         .then((res) => res.data);
@@ -88,7 +96,7 @@ export const logout = createAsyncThunk(
   async (arg, { rejectWithValue }) => {
     try {
       return await axios
-        .get(`http://localhost:8000/api/v1/logout`, {
+        .get(`https://mern-wao5.onrender.com/api/v1/logout`, {
           withCredentials: true,
         })
         .then((res) => res.data);
@@ -111,7 +119,11 @@ export const ChangePassword = createAsyncThunk(
         withCredentials: true,
       };
       return await axios
-        .put(`http://localhost:8000/api/v1/password/change`, formData, config)
+        .put(
+          `https://mern-wao5.onrender.com/api/v1/password/change`,
+          formData,
+          config
+        )
         .then((res) => res.data);
     } catch (error) {
       return rejectWithValue(
@@ -132,7 +144,11 @@ export const ForgetPassword = createAsyncThunk(
         withCredentials: true,
       };
       return await axios
-        .post(`http://localhost:8000/api/v1/password/forgot`, formData, config)
+        .post(
+          `https://mern-wao5.onrender.com/api/v1/password/forgot`,
+          formData,
+          config
+        )
         .then((res) => res.data);
     } catch (error) {
       return rejectWithValue(
@@ -155,7 +171,7 @@ export const ResetPassword = createAsyncThunk(
       console.log(arg.token);
       return await axios
         .post(
-          `http://localhost:8000/api/v1/password/reset/${arg.token}`,
+          `https://mern-wao5.onrender.com/api/v1/password/reset/${arg.token}`,
           arg.formData,
           config
         )
