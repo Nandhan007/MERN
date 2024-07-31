@@ -8,8 +8,12 @@ const crypto = require("crypto");
 exports.registerUser = catchAsyncError(async (req, res, next) => {
   const { name, email, password } = req.body;
   let avatar;
+  let BASE_URL = process.env.BACKEND_URL;
+  if (process.env.NODE_ENV === "production") {
+    BASE_URL = `${req.protocol}://${req.get("host")}`;
+  }
   if (req.file) {
-    avatar = `${process.env.BACKEND_URL}/uploads/user/${req.file.originalname}`;
+    avatar = `${BASE_URL}/uploads/user/${req.file.originalname}`;
   }
   const user = await User.create({
     name,
@@ -63,8 +67,12 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
   const resetToken = user.getResetToken();
   user.save({ validateBeforeSave: false });
 
+  let BASE_URL = process.env.FRONTEND_URL;
+  if (process.env.NODE_ENV === "production") {
+    BASE_URL = `${req.protocol}://${req.get("host")}`;
+  }
   // Create reset url
-  const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
+  const resetUrl = `${BASE_URL}/password/reset/${resetToken}`;
 
   const message = `Your password reset url is as follows \n\n 
   ${resetUrl}\n\n If you have not request this email, then ignore it.`;
@@ -146,8 +154,12 @@ exports.updateProfile = catchAsyncError(async (req, res, next) => {
     email: req.body.email,
   };
   let avatar;
+  let BASE_URL = process.env.BACKEND_URL;
+  if (process.env.NODE_ENV === "production") {
+    BASE_URL = `${req.protocol}://${req.get("host")}`;
+  }
   if (req.file) {
-    avatar = `${process.env.BACKEND_URL}/uploads/user/${req.file.originalname}`;
+    avatar = `${BASE_URL}/uploads/user/${req.file.originalname}`;
     newDetails = { ...newDetails, avatar };
   }
   const user = await User.findByIdAndUpdate(req.user.id, newDetails, {
