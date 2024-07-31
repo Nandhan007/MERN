@@ -11,7 +11,7 @@ const payment = require("./routes/payment.js");
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://mern-wao5.onrender.com",
     methods: ["GET", "POST", "PATCH", "DELETE", "PUT"],
     credentials: true,
   })
