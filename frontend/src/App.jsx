@@ -38,6 +38,9 @@ import NewProduct from "./components/admin/NewProduct.jsx";
 import UpdateProduct from "./components/admin/UpdateProduct.jsx";
 import OrderList from "./components/admin/OrderList.jsx";
 import UpdateOrder from "./components/admin/UpdateOrder.jsx";
+import UserList from "./components/admin/UserList.jsx";
+import UserUpdate from "./components/admin/UpdateUser.jsx";
+import ReviewList from "./components/admin/ReviewsList.jsx";
 function App() {
   const dispatch = useDispatch();
   const [stripeApi, setStripeApi] = useState("");
@@ -201,6 +204,30 @@ function App() {
               element={
                 <ProtectedRoute isAdmin={true}>
                   <UpdateOrder />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/users"
+              element={
+                <ProtectedRoute isAdmin={true}>
+                  <UserList />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/user/:id"
+              element={
+                <ProtectedRoute isAdmin={true}>
+                  <UserUpdate />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/reviews"
+              element={
+                <ProtectedRoute isAdmin={true}>
+                  <ReviewList />
                 </ProtectedRoute>
               }
             />

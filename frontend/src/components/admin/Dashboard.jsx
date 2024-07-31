@@ -2,9 +2,14 @@ import Sidebar from "./Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAdminProducts } from "../../redux/productsSlices";
+import { getUsers } from "../../redux/userSlices";
+import { GetOrders } from "../../redux/orderSlices";
+import { Link } from "react-router-dom";
 
 export default function Dashboard() {
   const { products = [] } = useSelector((state) => state.productsState);
+  const { users } = useSelector((state) => state.userState);
+  const { adminOrders } = useSelector((state) => state.orderState);
   const dispatch = useDispatch();
   var OutofStock = 0;
   if (products.length > 0) {
@@ -15,8 +20,17 @@ export default function Dashboard() {
     });
   }
 
+  let totalAmount = 0;
+  if (adminOrders.length > 0) {
+    adminOrders.forEach((order) => {
+      totalAmount += order.totalprice;
+    });
+  }
+
   useEffect(() => {
     dispatch(getAdminProducts());
+    dispatch(getUsers());
+    dispatch(GetOrders());
   }, [dispatch]);
   return (
     <div className="row">
@@ -31,7 +45,7 @@ export default function Dashboard() {
               <div className="card-body">
                 <div className="text-center card-font-size">
                   Total Amount
-                  <br /> <b>$3425</b>
+                  <br /> <b>${totalAmount}</b>
                 </div>
               </div>
             </div>
@@ -47,7 +61,7 @@ export default function Dashboard() {
                   <br /> <b>{products.length}</b>
                 </div>
               </div>
-              <a
+              <Link
                 className="card-footer text-white clearfix small z-1"
                 to="/admin/products"
               >
@@ -55,7 +69,7 @@ export default function Dashboard() {
                 <span className="float-right">
                   <i className="fa fa-angle-right"></i>
                 </span>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -64,10 +78,10 @@ export default function Dashboard() {
               <div className="card-body">
                 <div className="text-center card-font-size">
                   Orders
-                  <br /> <b>345</b>
+                  <br /> <b>{adminOrders.length}</b>
                 </div>
               </div>
-              <a
+              <Link
                 className="card-footer text-white clearfix small z-1"
                 to="/admin/orders"
               >
@@ -75,7 +89,7 @@ export default function Dashboard() {
                 <span className="float-right">
                   <i className="fa fa-angle-right"></i>
                 </span>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -84,18 +98,18 @@ export default function Dashboard() {
               <div className="card-body">
                 <div className="text-center card-font-size">
                   Users
-                  <br /> <b>55</b>
+                  <br /> <b>{users.length}</b>
                 </div>
               </div>
-              <a
+              <Link
                 className="card-footer text-white clearfix small z-1"
-                href="/admin/users"
+                to="/admin/users"
               >
                 <span className="float-left">View Details</span>
                 <span className="float-right">
                   <i className="fa fa-angle-right"></i>
                 </span>
-              </a>
+              </Link>
             </div>
           </div>
 

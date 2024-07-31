@@ -55,7 +55,11 @@ router
   .get(isAuthenticateUser, authorisedRoles("admin"), getAdminProducts);
 
 router.route("/review/new").put(isAuthenticateUser, createReview);
-router.route("/getreviews").get(getReviews);
-router.route("/review/delete").delete(deleteReview);
+router
+  .route("/admin/getreviews")
+  .get(isAuthenticateUser, authorisedRoles("admin"), getReviews);
+router
+  .route("/admin/review/delete")
+  .delete(isAuthenticateUser, authorisedRoles("admin"), deleteReview);
 
 module.exports = router;

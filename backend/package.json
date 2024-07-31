@@ -4,10 +4,10 @@
   "description": "e-commerce application using mern stack",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon backend/server.js",
-    "dev": "set NODE_ENV=developement&&nodemon backend/server.js",
-    "prod": "set NODE_ENV=production&&nodemon backend/server.js",
-    "seed": "nodemon backend/utils/seeder.js"
+    "start": "nodemon server.js",
+    "dev": "set NODE_ENV=developement&&nodemon server.js",
+    "prod": "set NODE_ENV=production&&nodemon server.js",
+    "seed": "nodemon utils/seeder.js"
   },
   "author": "Nithiyanantham",
   "license": "ISC",

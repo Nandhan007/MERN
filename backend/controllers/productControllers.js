@@ -149,11 +149,13 @@ exports.createReview = catchAsyncError(async (req, res, next) => {
 });
 
 exports.getReviews = catchAsyncError(async (req, res, next) => {
-  const product = await ProductModel.findById(req.query.id);
-  console.log(product.reviews[0].user.name);
+  const product = await ProductModel.findById(req.query.id).populate(
+    "reviews.user",
+    "name email"
+  );
   res.status(200).json({
     success: true,
-    Reviews: product.reviews,
+    reviews: product.reviews,
   });
 });
 

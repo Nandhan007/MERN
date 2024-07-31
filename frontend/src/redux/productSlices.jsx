@@ -95,6 +95,44 @@ export const CreateReview = createAsyncThunk(
   }
 );
 
+export const GetReviews = createAsyncThunk(
+  "GetReviews",
+  async (arg, { rejectWithValue }) => {
+    try {
+      const config = {
+        params: { id: arg },
+        withCredentials: true,
+      };
+      return await axios
+        .get(`http://localhost:8000/api/v1/admin/getreviews`, config)
+        .then((res) => res.data);
+    } catch (error) {
+      return rejectWithValue(
+        error.response.data.message || "An Unknown error Occured"
+      );
+    }
+  }
+);
+
+export const DeleteReviews = createAsyncThunk(
+  "DeleteReviews",
+  async (arg, { rejectWithValue }) => {
+    try {
+      const config = {
+        params: { productId: arg.productId, id: arg.id },
+        withCredentials: true,
+      };
+      return await axios
+        .delete(`http://localhost:8000/api/v1/admin/review/delete`, config)
+        .then((res) => res.data);
+    } catch (error) {
+      return rejectWithValue(
+        error.response.data.message || "An Unknown error Occured"
+      );
+    }
+  }
+);
+
 const productSlice = createSlice({
   name: "product",
   initialState: {
@@ -105,6 +143,8 @@ const productSlice = createSlice({
     isProductCreated: false,
     isProductDeleted: false,
     isProductUpdated: false,
+    isReviewDeleted: false,
+    reviews: [],
   },
   reducers: {
     clearReviewSubmitted(state, action) {
@@ -135,6 +175,12 @@ const productSlice = createSlice({
       return {
         ...state,
         isProductUpdated: false,
+      };
+    },
+    clearReviewDeleted(state, action) {
+      return {
+        ...state,
+        isReviewDeleted: false,
       };
     },
   },
@@ -198,6 +244,28 @@ const productSlice = createSlice({
       state.error = action.payload;
       state.isProductUpdated = false;
     });
+    builder.addCase(GetReviews.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(GetReviews.fulfilled, (state, action) => {
+      state.loading = false;
+      state.reviews = action.payload.reviews;
+    });
+    builder.addCase(GetReviews.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
+    builder.addCase(DeleteReviews.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(DeleteReviews.fulfilled, (state, action) => {
+      state.loading = false;
+      state.isReviewDeleted = true;
+    });
+    builder.addCase(DeleteReviews.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    });
   },
 });
 
@@ -208,5 +276,6 @@ export const {
   clearProductError,
   clearDeletedProduct,
   clearUpdatedProduct,
+  clearReviewDeleted,
 } = actions;
 export default reducer;
