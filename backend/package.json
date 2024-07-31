@@ -4,7 +4,7 @@
   "description": "e-commerce application using mern stack",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "dev": "set NODE_ENV=developement&&nodemon server.js",
     "prod": "set NODE_ENV=production&&nodemon server.js",
     "seed": "nodemon utils/seeder.js"
