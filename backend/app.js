@@ -11,7 +11,7 @@ const payment = require("./routes/payment.js");
 
 app.use(
   cors({
-    origin: "https://mern-wao5.onrender.com",
+    origin: "https://mern-wepapp-project.netlify.app",
     methods: ["GET", "POST", "PATCH", "DELETE", "PUT"],
     credentials: true,
   })
