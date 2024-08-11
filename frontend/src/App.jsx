@@ -72,7 +72,7 @@ function App() {
       <Router>
         <HelmetProvider>
           <Header />
-          <div className="container container-fluid">
+          <div className="container container-fluid vh-100">
             <ToastContainer theme="dark" />
             <Routes>
               <Route path="/" element={<Home />} />
