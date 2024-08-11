@@ -21,7 +21,7 @@ export default function Header() {
       <div className="col-12 col-md-3">
         <div className="navbar-brand">
           <Link to={`/`}>
-            <img width="150px" src="/images/logo.png" />
+            <img width="200px" src="/images/E-cart.png" />
           </Link>
         </div>
       </div>
@@ -40,7 +40,6 @@ export default function Header() {
                 <Image
                   width="50px"
                   src={User.avatar ?? "images/default_avatar.jpg"}
-                  alt={User.name}
                 />
               </figure>
               <span>{User.name}</span>

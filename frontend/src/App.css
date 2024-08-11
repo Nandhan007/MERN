@@ -115,10 +115,10 @@ nav {
 
 /* Footer */
 footer {
-  margin-top: 8rem;
-  color: grey;
+  margin-top: 0rem;
   bottom: 0;
   width: 100%;
+  background-color: #232f3e;
 }
 
 /* Ratings */
@@ -352,7 +352,12 @@ footer {
   height: 2.2rem;
   width: 2.2rem;
 }
-
+.chgpass {
+  margin-bottom: 85px;
+}
+.ordertable {
+  margin-bottom: 160px;
+}
 /* Checkout Steps */
 
 .checkout-progress div {
@@ -500,6 +505,8 @@ footer {
   background: #232f3e;
   color: #fff;
   transition: all 0.3s;
+  border-right: 2px solid grey;
+  border-bottom: 2px solid grey;
 }
 #sidebar.active {
   margin-left: -250px;

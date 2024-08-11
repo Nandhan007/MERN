@@ -44,7 +44,7 @@ export function Profile() {
           <Link
             to={"/password/change"}
             href="#"
-            className="btn btn-primary btn-block mt-3"
+            className="btn btn-primary btn-block mt-3 chgpass"
           >
             Change Password
           </Link>

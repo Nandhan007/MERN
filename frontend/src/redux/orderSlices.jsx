@@ -6,7 +6,7 @@ export const NewOrder = createAsyncThunk(
   async (arg, { rejectWithValue }) => {
     try {
       return await axios
-        .post("https://mern-wao5.onrender.com/api/v1/order/new", arg, {
+        .post("http://localhost:8000/api/v1/order/new", arg, {
           withCredentials: true,
         })
         .then((res) => res.data);
@@ -22,7 +22,7 @@ export const MyOrder = createAsyncThunk(
   async (arg, { rejectWithValue }) => {
     try {
       return await axios
-        .get("https://mern-wao5.onrender.com/api/v1/myorders", {
+        .get("http://localhost:8000/api/v1/myorders", {
           withCredentials: true,
         })
         .then((res) => res.data);

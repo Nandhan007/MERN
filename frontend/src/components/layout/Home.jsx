@@ -45,7 +45,7 @@ export default function Home() {
             </div>
           </section>
           {totalcount > 0 && totalcount > resperpage ? (
-            <div className="d-flex justify-content-center mt-5">
+            <div className="d-flex justify-content-center my-5">
               <Pagination
                 activePage={currentPage}
                 onChange={setPage}

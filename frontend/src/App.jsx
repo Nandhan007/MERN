@@ -59,7 +59,7 @@ function App() {
     store.dispatch(loadUser());
     async function getStripeApi() {
       const data = await axios
-        .get("http://localhost:8000/api/v1/stripeapi", {
+        .get("https://mern-wao5.onrender.com/api/v1/stripeapi", {
           withCredentials: true,
         })
         .then((res) => res.data);
