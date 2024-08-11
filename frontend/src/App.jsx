@@ -93,7 +93,7 @@ function MainContent({ stripeApi }) {
   const isAdmin = location.pathname.startsWith("/admin");
   return (
     <>
-      <div className={`container container-fluid ${isAdmin ? "" : "vh-150"}`}>
+      <div className={`container container-fluid ${isAdmin ? "" : "vh-100"}`}>
         <ToastContainer theme="dark" />
         <Routes>
           <Route path="/" element={<Home />} />
