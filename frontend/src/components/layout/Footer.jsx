@@ -7,7 +7,10 @@ export default function Footer() {
     <footer className="py-1">
       <p
         className="text-center text-light mt-1"
-        style={{ backgroundColor: `${isAdmin ? "#232f3e" : "#fff"}` }}
+        style={{
+          backgroundColor: `${isAdmin ? "#232f3e" : "#fff"}`,
+          color: `${isAdmin ? "#fff" : "#000"}`,
+        }}
       >
         JVLcart - 2022-2023, All Rights Reserved
       </p>
