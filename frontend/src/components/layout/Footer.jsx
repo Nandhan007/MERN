@@ -4,11 +4,13 @@ export default function Footer() {
   const location = useLocation();
   const isAdmin = location.pathname.startsWith("/admin");
   return (
-    <footer className="py-1">
+    <footer
+      className="py-1"
+      style={{ backgroundColor: `${isAdmin ? "#232f3e" : "#fff"}` }}
+    >
       <p
         className="text-center mt-1"
         style={{
-          backgroundColor: `${isAdmin ? "#232f3e" : "#fff"}`,
           color: `${isAdmin ? "#fff" : "#000"}`,
         }}
       >
