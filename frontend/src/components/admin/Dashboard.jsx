@@ -33,7 +33,7 @@ export default function Dashboard() {
     dispatch(GetOrders());
   }, [dispatch]);
   return (
-    <div className="row">
+    <div className="row style={{height:'-100vh'}}">
       <div className="col-12 col-md-2">
         <Sidebar />
       </div>
