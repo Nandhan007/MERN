@@ -4,8 +4,14 @@ import ProductSearch from "./components/Product/productSearch.jsx";
 import Footer from "./components/layout/Footer.jsx";
 import Header from "./components/layout/Header.jsx";
 import Home from "./components/layout/Home.jsx";
+import PropTypes from "prop-types";
 import { HelmetProvider } from "react-helmet-async";
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  BrowserRouter as Router,
+  useLocation,
+} from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Login } from "./components/user/Login.jsx";
@@ -72,171 +78,179 @@ function App() {
       <Router>
         <HelmetProvider>
           <Header />
-          <div className="container container-fluid vh-100">
-            <ToastContainer theme="dark" />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/search/:keyword" element={<ProductSearch />} />
-              <Route path="/product/:id" element={<ProductDescription />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route
-                path="/myprofile"
-                element={
-                  <ProtectedRoute>
-                    <Profile />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="/myprofile/update" element={<UpdateProfile />} />
-              <Route
-                path="/password/change"
-                element={
-                  <ProtectedRoute>
-                    <ChangePassword />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="/password/forgot" element={<Forgetpassword />} />
-              <Route
-                path="/password/reset/:token"
-                element={<Resetpassword />}
-              />
-              <Route path="/cart" element={<Cart />} />
-              <Route
-                path="/shipping"
-                element={
-                  <ProtectedRoute>
-                    <ShippingInfo />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/order/confirm"
-                element={
-                  <ProtectedRoute>
-                    <ConfirmOrder />
-                  </ProtectedRoute>
-                }
-              />
-              {stripeApi && (
-                <Route
-                  path="/payment"
-                  element={
-                    <ProtectedRoute>
-                      <Elements stripe={loadStripe(stripeApi)}>
-                        <Payment />
-                      </Elements>
-                    </ProtectedRoute>
-                  }
-                />
-              )}
-              <Route
-                path="/order/success"
-                element={
-                  <ProtectedRoute>
-                    <OrderSuccess />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/orders"
-                element={
-                  <ProtectedRoute>
-                    <UserOrders />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/order/:id"
-                element={
-                  <ProtectedRoute>
-                    <OrderDescription />
-                  </ProtectedRoute>
-                }
-              />
-            </Routes>
-          </div>
-          {/* Admin Routes */}
-          <Routes>
-            <Route
-              path="/admin/dashboard"
-              element={
-                <ProtectedRoute isAdmin={true}>
-                  <Dashboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/products"
-              element={
-                <ProtectedRoute isAdmin={true}>
-                  <ProductList />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/products/create"
-              element={
-                <ProtectedRoute isAdmin={true}>
-                  <NewProduct />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/product/:id"
-              element={
-                <ProtectedRoute isAdmin={true}>
-                  <UpdateProduct />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/orders"
-              element={
-                <ProtectedRoute isAdmin={true}>
-                  <OrderList />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/orders/:id"
-              element={
-                <ProtectedRoute isAdmin={true}>
-                  <UpdateOrder />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/users"
-              element={
-                <ProtectedRoute isAdmin={true}>
-                  <UserList />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/user/:id"
-              element={
-                <ProtectedRoute isAdmin={true}>
-                  <UserUpdate />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin/reviews"
-              element={
-                <ProtectedRoute isAdmin={true}>
-                  <ReviewList />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
+          <MainContent stripeApi={stripeApi} />
           <Footer />
         </HelmetProvider>
       </Router>
     </>
   );
 }
-
+MainContent.propTypes = {
+  stripeApi: PropTypes.string.isRequired,
+};
+function MainContent({ stripeApi }) {
+  const location = useLocation();
+  const isAdmin = location.pathname.startsWith("/admin");
+  return (
+    <>
+      <div className={`container container-fluid ${isAdmin ? "" : "vh-100"}`}>
+        <ToastContainer theme="dark" />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/search/:keyword" element={<ProductSearch />} />
+          <Route path="/product/:id" element={<ProductDescription />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/myprofile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/myprofile/update" element={<UpdateProfile />} />
+          <Route
+            path="/password/change"
+            element={
+              <ProtectedRoute>
+                <ChangePassword />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/password/forgot" element={<Forgetpassword />} />
+          <Route path="/password/reset/:token" element={<Resetpassword />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route
+            path="/shipping"
+            element={
+              <ProtectedRoute>
+                <ShippingInfo />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/order/confirm"
+            element={
+              <ProtectedRoute>
+                <ConfirmOrder />
+              </ProtectedRoute>
+            }
+          />
+          {stripeApi && (
+            <Route
+              path="/payment"
+              element={
+                <ProtectedRoute>
+                  <Elements stripe={loadStripe(stripeApi)}>
+                    <Payment />
+                  </Elements>
+                </ProtectedRoute>
+              }
+            />
+          )}
+          <Route
+            path="/order/success"
+            element={
+              <ProtectedRoute>
+                <OrderSuccess />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/orders"
+            element={
+              <ProtectedRoute>
+                <UserOrders />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/order/:id"
+            element={
+              <ProtectedRoute>
+                <OrderDescription />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </div>
+      {/* Admin Routes */}
+      <Routes>
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/products"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <ProductList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/products/create"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <NewProduct />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/product/:id"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <UpdateProduct />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/orders"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <OrderList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/orders/:id"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <UpdateOrder />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/users"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <UserList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/user/:id"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <UserUpdate />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/reviews"
+          element={
+            <ProtectedRoute isAdmin={true}>
+              <ReviewList />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </>
+  );
+}
 export default App;
