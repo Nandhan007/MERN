@@ -64,9 +64,13 @@ export default function Payment() {
     document.querySelector("#pay_btn").disabled = true;
 
     const data = await axios
-      .post("http://localhost:8000/api/v1/payment/process", PaymentData, {
-        withCredentials: true,
-      })
+      .post(
+        "https://mern-wao5.onrender.com/api/v1/payment/process",
+        PaymentData,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => res.data);
     const client_secret = data.client_secret;
     const result = stripe.confirmCardPayment(client_secret, {
