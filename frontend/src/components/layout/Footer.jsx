@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="py-1">
       <p
-        className="text-center"
+        className="text-center mt-1"
         style={{
           backgroundColor: `${isAdmin ? "#232f3e" : "#fff"}`,
           color: `${isAdmin ? "#fff" : "#000"}`,
