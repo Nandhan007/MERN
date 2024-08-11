@@ -45,7 +45,7 @@ export default function Dashboard() {
               <div className="card-body">
                 <div className="text-center card-font-size">
                   Total Amount
-                  <br /> <b>${totalAmount}</b>
+                  <br /> <b>${totalAmount.toFixed(2)}</b>
                 </div>
               </div>
             </div>
