@@ -5,7 +5,7 @@ import Footer from "./components/layout/Footer.jsx";
 import Header from "./components/layout/Header.jsx";
 import Home from "./components/layout/Home.jsx";
 import { HelmetProvider } from "react-helmet-async";
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import { Routes, Route, BrowserRouter as Router, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Login } from "./components/user/Login.jsx";
@@ -43,6 +43,7 @@ import UserUpdate from "./components/admin/UpdateUser.jsx";
 import ReviewList from "./components/admin/ReviewsList.jsx";
 function App() {
   const dispatch = useDispatch();
+   const location = useLocation();
   const [stripeApi, setStripeApi] = useState("");
   const { error } = useSelector((state) => state.authState);
   useEffect(() => {
@@ -67,12 +68,16 @@ function App() {
     }
     getStripeApi();
   }, []);
+
+  const isAdmin = location.pathname.startsWith("/admin");
   return (
     <>
       <Router>
         <HelmetProvider>
           <Header />
-          <div className="container container-fluid vh-100">
+          <div  className={`container container-fluid ${
+              isAdmin ? "" : "vh-100"
+            }`}>
             <ToastContainer theme="dark" />
             <Routes>
               <Route path="/" element={<Home />} />
