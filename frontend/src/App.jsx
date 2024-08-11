@@ -6,12 +6,7 @@ import Header from "./components/layout/Header.jsx";
 import Home from "./components/layout/Home.jsx";
 import PropTypes from "prop-types";
 import { HelmetProvider } from "react-helmet-async";
-import {
-  Routes,
-  Route,
-  BrowserRouter as Router,
-  useLocation,
-} from "react-router-dom";
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Login } from "./components/user/Login.jsx";
@@ -89,11 +84,9 @@ MainContent.propTypes = {
   stripeApi: PropTypes.string.isRequired,
 };
 function MainContent({ stripeApi }) {
-  const location = useLocation();
-  const isAdmin = location.pathname.startsWith("/admin");
   return (
     <>
-      <div className={`container container-fluid ${isAdmin ? "" : "vh-100"}`}>
+      <div className={`container container-fluid`}>
         <ToastContainer theme="dark" />
         <Routes>
           <Route path="/" element={<Home />} />
